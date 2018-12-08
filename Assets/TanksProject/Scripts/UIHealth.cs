@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using _Tank;
 public class UIHealth : MonoBehaviour {
 
     public Image[] hearts;
@@ -19,7 +19,7 @@ public class UIHealth : MonoBehaviour {
         {
             hearts[i].
         }*/
-        health = player.GetComponent<Health>().health;
+        health = player.GetComponent<Tank>().hp;
     }
 	
 	// Update is called once per frame
@@ -29,9 +29,9 @@ public class UIHealth : MonoBehaviour {
             health--;
         }*/
 
-       
-        health = player.GetComponent<Health>().health;
-        print(hearts.Length);
+
+        health = player.GetComponent<Tank>().hp;
+        //print(hearts.Length);
 
         /* empieza en 1 porque por algun motivo el 
          * metodo getchildren incluye al padre en el array en la posicion 0 */

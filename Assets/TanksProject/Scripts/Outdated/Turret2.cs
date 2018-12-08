@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Turret2 : MonoBehaviour
 {
 
     public Vector3 mouse_pos;
@@ -12,22 +12,19 @@ public class Turret : MonoBehaviour
     public float contiguo;
     public float opuesto;
     public float speed = 15f;
-    public Rigidbody rb;
+    //public Rigidbody rb;
     public Camera cam;
     public GameObject bullet;
     public float TurretAngle;
     public GameObject spawner;
     public float fireRate = 0.5f;
-
-
-
     int floorMask;
     float camRayLength = 100f;
     public bool allowFire = true;
     // Use this for initialization
     void Awake()
     {
-        rb = gameObject.GetComponent<Rigidbody>();
+        //rb = gameObject.GetComponent<Rigidbody>();
         floorMask = LayerMask.GetMask("Floor");
         //print(floorMask);
 

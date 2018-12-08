@@ -1,38 +1,57 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.AI;
+
 
 public class BlockAnimation : MonoBehaviour
 {
+    public static float minWaitTime = 1f;
+    public static float maxWaitTime = 3f;
+
+    public bool blockIsPlaced = true;
     private float speed = 20;
     public bool hasStarted = false;
     private  Vector3 destination;
-
+    //public GameObject levelManager;
+    Vector3 distance;
     void Start()
     {
-        Vector3 distance = new Vector3(0, 50, 0);
+        distance = new Vector3(0, 50, 0);
         destination = gameObject.transform.position - distance;
         // Set the destination to be the object's position so it will not start off moving
-        SetDestination(destination);
+        //SetDestination(destination);
     }
 
     void Update()
     {
+        if (transform.position.y <= -50)
+            Destroy(gameObject);
+        if (LevelManager.LoadNextLevel && blockIsPlaced)
+        {
+            destination = gameObject.transform.position - distance;
+            //Debug.Log("dest" + destination);
+            blockIsPlaced = false;
+            hasStarted = false;
+            //Debug.Log("dest2" + destination);
+            //Debug.Log("pos" + gameObject.transform.position);
+            //StartCoroutine("LoadNextLevel");
+        }
+
         // If the object is not at the target destination
         if (destination != gameObject.transform.position)
         {
+            //print("moviendome");
             // Move towards the destination each frame until the object reaches it
-            if(!hasStarted)
+            if (!hasStarted)
                 StartCoroutine("Wait");
             else
                 StartCoroutine("IncrementPosition");
         }
+        else blockIsPlaced = true;
     }
+
     IEnumerator Wait()
-    {
-        float test = Random.Range(1f, 3f);
-        
-        yield return new WaitForSeconds(test);
+    {   
+        yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
         hasStarted = true;
 
     }

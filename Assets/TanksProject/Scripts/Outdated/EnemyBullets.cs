@@ -26,11 +26,5 @@ public class EnemyBullets : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        
-      
-
-
-
     }
-
 }

@@ -1,22 +1,29 @@
-﻿using System.Collections;
+﻿using _PlayerTank;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour {
 
-    
+    public List<Level> levels;
+    public int levelIndex = 0;
+
+    public static bool LoadNextLevel = false;
+    public static int numberOfEntities = -1;
     public GameObject GreenTank;
     public GameObject BlueTank;
     public GameObject PinkTank;
     public GameObject player;
-    public List<GameObject> spawnpoints;
-    public int numberOfEntities;
+    public GameObject portal;
+    private List<GameObject> spawnpoints;
+    
     private List<GameObject> tankTypes;
     public List<GameObject> currentEntities;
     public List<GameObject> spawnpoints_aux;
     public ParticleSystem ps_spawn;
     public bool hasStarted = false;
     public Vector3 initial_player_pos = new Vector3(11, 2.5f, 17);
+    public bool LevelPassed = false;
 
     // Use this for initialization
     void Start () {
@@ -34,32 +41,53 @@ public class LevelManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+      
         if (hasStarted) { 
 		    for (var i = 0; i < currentEntities.Count; i++)
             {
                 if (!currentEntities[i].activeSelf)
+                {
                     currentEntities.RemoveAt(i);
+                    numberOfEntities--;
+                }      
             }
-            print(currentEntities.Count);
-            if (currentEntities.Count <= 0)
+            //print(currentEntities.Count);
+            if (numberOfEntities == 0)
             {
-                Debug.Log("level finished");
+                LoadNextLevel = true;
+                numberOfEntities = -1;
+                levelIndex = Random.Range(0, 2);
+                StartCoroutine("Reset");         
+                ParticleSystem player_ps = Instantiate(ps_spawn, player.transform.position, player.transform.rotation);
+                player_ps.gameObject.SetActive(true);
+                player_ps.Play();
+                player.SetActive(false);
+                StartCoroutine("SpawnEnemiesAndPlayer");
             }
         }
     }
   
+    IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(BlockAnimation.minWaitTime);
+        LoadNextLevel = false;
+        
+    }
     IEnumerator SpawnEnemiesAndPlayer()
     {
+        Level level = Instantiate(levels[levelIndex],new Vector3(0,50,0), Quaternion.identity);
+        //level.setActive(true);
         /*Esperamos a que el mapa esté colocado */
         yield return new WaitForSeconds(6);
 
-        ParticleSystem player_ps = Instantiate(ps_spawn, player.transform.position, player.transform.rotation);
+        ParticleSystem player_ps = Instantiate(ps_spawn, initial_player_pos, player.transform.rotation);
         player_ps.gameObject.SetActive(true);
         player_ps.Play();
         yield return new WaitForSeconds(0.5f);
         player_ps.gameObject.SetActive(false);
 
         player.SetActive(true);
+        player.GetComponent<PlayerTank>().allowFire = true;
         player.transform.position = initial_player_pos;
 
         /*Damos unos segundos para que el player pueda moverse y ver el mapa */
@@ -73,9 +101,10 @@ public class LevelManager : MonoBehaviour {
 
         /*Bucle para decidir que spawns utilizar */
 
-        spawnpoints_aux = spawnpoints;
+        spawnpoints_aux = level.spawnpoints;
 
         /*mientras haya enemigos que spawnear*/
+   
         while (enemiesLeftToSpawn > 0) { 
             /*Recorremos cada spawn*/
             foreach (GameObject spawn in spawnpoints_aux)
@@ -108,7 +137,5 @@ public class LevelManager : MonoBehaviour {
             }
         }
         hasStarted = true;
-
-
     }
 }

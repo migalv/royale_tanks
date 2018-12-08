@@ -14,7 +14,7 @@ public class SlowDownBullet : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         StartCoroutine("slowDown");
-        print(rb.velocity);
+        //print(rb.velocity);
         if (Mathf.Abs(rb.velocity.x) < 1 || Mathf.Abs(rb.velocity.z) < 1)
             Destroy(gameObject);
 	}

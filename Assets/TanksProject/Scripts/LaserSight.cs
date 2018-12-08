@@ -5,6 +5,7 @@ public class LaserSight : MonoBehaviour
 {
 
     private LineRenderer lr;
+    public LayerMask lm;
     // Use this for initialization
     void Start()
     {
@@ -16,7 +17,7 @@ public class LaserSight : MonoBehaviour
     {
         lr.SetPosition(0, transform.position);
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, lm))
         {
             if (hit.collider)
             {

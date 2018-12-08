@@ -53,12 +53,7 @@ public class AI : MonoBehaviour
 
             // Destroy(collision.gameObject);
             Destroy(gameObject);
-
-
         }
-
-
-
     }
 
     void Update()

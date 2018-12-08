@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 23374679265632452}
   - component: {fileID: 135909216063642740}
   - component: {fileID: 54536025263753446}
-  - component: {fileID: 114550705802231172}
   - component: {fileID: 114991838651242770}
+  - component: {fileID: 114684636861519106}
   m_Layer: 11
   m_Name: GreenBullet
   m_TagString: EnemyBullet
@@ -102,7 +102,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
---- !u!114 &114550705802231172
+--- !u!114 &114684636861519106
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,9 +110,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1527018655168622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 609688ca67732664283e6359002ae327, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c5c2fbfbe5b47847b19d2a82934fef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
+  range: 1
+  turret: {fileID: 0}
+  dmg: 1
 --- !u!114 &114991838651242770
 MonoBehaviour:
   m_ObjectHideFlags: 1

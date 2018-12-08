@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4284500713250792}
   - component: {fileID: 96456224459499870}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4293505417724892}
   - component: {fileID: 198354556903380100}
   - component: {fileID: 199930537093530830}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,9 +54,10 @@ GameObject:
   - component: {fileID: 4195593130208278}
   - component: {fileID: 54705665484093970}
   - component: {fileID: 65816101653794680}
-  m_Layer: 0
+  - component: {fileID: 114709494904661550}
+  m_Layer: 13
   m_Name: vfx_projectile_1
-  m_TagString: Untagged
+  m_TagString: FriendlyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +72,7 @@ GameObject:
   - component: {fileID: 4822597696939728}
   - component: {fileID: 198751090559350172}
   - component: {fileID: 199485502853815928}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +157,7 @@ BoxCollider:
   m_GameObject: {fileID: 1527512090892754}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -261,6 +262,21 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &114709494904661550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1527512090892754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad72a7c8d869134da63bf0dd591c2cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  range: 1
+  turret: {fileID: 0}
+  dmg: 1
 --- !u!198 &198354556903380100
 ParticleSystem:
   m_ObjectHideFlags: 1

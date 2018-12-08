@@ -43,8 +43,6 @@ public class PlayerMovement : MonoBehaviour
 
         // Rotate around our y-axis
 
-
-
         Quaternion turnRotation = Quaternion.Euler(0f, rotation, 0f);
 
         // Apply this rotation to the rigidbody's rotation.
