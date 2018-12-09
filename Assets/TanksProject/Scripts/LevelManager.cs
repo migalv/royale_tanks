@@ -8,7 +8,7 @@ using _Config;
 public class LevelManager : MonoBehaviour {
 
     public List<Level> levels;
-    public int levelIndex = 0;
+    public int levelIndex;
 
     public static bool LoadNextLevel = false;
     public static int numberOfEntities = -1;
@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour {
     public bool hasStarted = false;
     public Vector3 initial_player_pos = new Vector3(11, 2.5f, 17);
     public bool LevelPassed = false;
-
+    private Level level;
     // Use this for initialization
     void Start () {
         tankTypes = new List<GameObject>
@@ -39,6 +39,7 @@ public class LevelManager : MonoBehaviour {
         };
         spawnpoints_aux = new List<GameObject>();
         currentEntities = new List<GameObject>();
+        levelIndex = Random.Range(0, levels.Count);
         //StartCoroutine("SpawnPlayer");
         StartCoroutine("SpawnEnemiesAndPlayer");
 	}
@@ -66,13 +67,28 @@ public class LevelManager : MonoBehaviour {
             {
                 LoadNextLevel = true;
                 numberOfEntities = -1;
-                levelIndex = Random.Range(0, 2);
-                StartCoroutine("Reset");         
-                ParticleSystem player_ps = Instantiate(ps_spawn, player.transform.position, player.transform.rotation);
-                player_ps.gameObject.SetActive(true);
-                player_ps.Play();
-                player.SetActive(false);
-                StartCoroutine("SpawnEnemiesAndPlayer");
+                levels.RemoveAt(levelIndex);
+                if (levels.Count == 0 )
+                {
+                    if(GameOverPanel.activeSelf == false)
+                    {
+                        GameOverPanel.SetActive(true);
+                        GameOver.ShowGameOver(GameOverCondition.WIN);
+                    }
+                
+                }
+                else
+                {
+                    
+                    levelIndex = Random.Range(0, levels.Count);
+                    StartCoroutine("Reset");
+                    ParticleSystem player_ps = Instantiate(ps_spawn, player.transform.position, player.transform.rotation);
+                    player_ps.gameObject.SetActive(true);
+                    player_ps.Play();
+                    player.SetActive(false);
+                    StartCoroutine("SpawnEnemiesAndPlayer");
+                }
+
             }
         }
     }
@@ -85,7 +101,7 @@ public class LevelManager : MonoBehaviour {
     }
     IEnumerator SpawnEnemiesAndPlayer()
     {
-        Level level = Instantiate(levels[levelIndex],new Vector3(0,50,0), Quaternion.identity);
+        level = Instantiate(levels[levelIndex],new Vector3(0,50,0), Quaternion.identity);
         //level.setActive(true);
         /*Esperamos a que el mapa esté colocado */
         yield return new WaitForSeconds(6);
