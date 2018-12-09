@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace _GameOver
 {
     public class GameOver : MonoBehaviour
     {
+        public Text GameOverMessage1;
 
         public void NewGame()
         {
@@ -34,7 +36,7 @@ namespace _GameOver
 
         static void ShowPlayerWon()
         {
-
+            GameOverMessage1.text = Config.Instance.winMessage;
         }
         static void ShowPlayerLost()
         {

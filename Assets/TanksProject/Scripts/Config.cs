@@ -9,7 +9,7 @@ public class Config : Singleton<Config>{
     // ########################################
     // Escenas
     // ########################################
-    #region Variables
+    #region Escenas
 
     // Variable que hace referencia al nombre de la escena donde se cargan el juego
     public string levelScene = "TestLevel";
@@ -17,6 +17,13 @@ public class Config : Singleton<Config>{
     public string menuScene = "tanks_menu";
 
     #endregion // Escenas
+
+    // ########################################
+    // Escenas
+    // ########################################
+    #region Variables
+
+    #endregion
 }
 
 
