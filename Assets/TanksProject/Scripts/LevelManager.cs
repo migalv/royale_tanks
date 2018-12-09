@@ -46,8 +46,9 @@ public class LevelManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        // Comprobamos si el tanque del jugador fue destruido
         if (player.GetComponent<PlayerTank>().hp <= 0 && (GameOverPanel.activeSelf == false))
-        {
+        {// Si fue destruido entonces le mostramos la pantalla de Game Over LOST
             GameOverPanel.SetActive(true);
             GameOver.ShowGameOver(GameOverCondition.LOST);
         }

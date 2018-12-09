@@ -2042,7 +2042,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 888396951}
+      - m_Target: {fileID: 888396949}
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -3263,7 +3263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &836335841
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3387,7 +3387,7 @@ GameObject:
   - component: {fileID: 888396953}
   - component: {fileID: 888396952}
   - component: {fileID: 888396950}
-  - component: {fileID: 888396951}
+  - component: {fileID: 888396949}
   m_Layer: 5
   m_Name: GameOverPanel
   m_TagString: Untagged
@@ -3418,6 +3418,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.000044865046}
   m_SizeDelta: {x: 655.5, y: 729.6}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &888396949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 888396947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccdff05aa839a114894309ab6f625ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameOverMessage1: {fileID: 2072207531}
+  GameOverMessage2: {fileID: 836335840}
+  GameOverPanel: {fileID: 888396950}
 --- !u!114 &888396950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3607,17 +3621,6 @@ MonoBehaviour:
   m_RotationVariable: 0
   m_ScaleVariable: 0
   m_FadeVariable: 0
---- !u!114 &888396951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 888396947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccdff05aa839a114894309ab6f625ac5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &888396952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3985,7 +3988,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 888396951}
+      - m_Target: {fileID: 888396949}
         m_MethodName: NewGame
         m_Mode: 1
         m_Arguments:
@@ -7293,6 +7296,7 @@ MonoBehaviour:
   PinkTank: {fileID: 1068168776982668, guid: f987bec6f5778e64a8716efd927d1474, type: 2}
   player: {fileID: 1598602976}
   portal: {fileID: 0}
+  GameOverPanel: {fileID: 888396947}
   currentEntities: []
   spawnpoints_aux: []
   ps_spawn: {fileID: 198957449744331488, guid: ddd2f544cd6b20b4f956af1ff3e7e92d, type: 2}
