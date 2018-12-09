@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using _GameOver;
+using _Config;
 
 public class LevelManager : MonoBehaviour {
 
@@ -17,7 +18,9 @@ public class LevelManager : MonoBehaviour {
     public GameObject player;
     public GameObject portal;
     private List<GameObject> spawnpoints;
-    
+
+    public GameObject GameOverPanel;
+
     private List<GameObject> tankTypes;
     public List<GameObject> currentEntities;
     public List<GameObject> spawnpoints_aux;
@@ -43,8 +46,9 @@ public class LevelManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (player.GetComponent<PlayerTank>().hp <= 0)
+        if (player.GetComponent<PlayerTank>().hp <= 0 && (GameOverPanel.activeSelf == false))
         {
+            GameOverPanel.SetActive(true);
             GameOver.ShowGameOver(GameOverCondition.LOST);
         }
       

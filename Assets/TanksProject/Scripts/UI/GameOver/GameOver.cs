@@ -3,12 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using _Config;
 
 namespace _GameOver
 {
-    public class GameOver : MonoBehaviour
-    {
-        public static Text GameOverMessage1;
+    public class GameOver : MonoBehaviour{
+
+        public Text GameOverMessage1;
+        public GameObject GameOverMessage2;
+        public GUIAnimFREE GameOverPanel;
+        public static Text sGameOverMessage1;
+        public static GameObject sGameOverMessage2;
+        public static GUIAnimFREE sGameOverPanel;
+
+        private void Awake()
+        {
+            sGameOverMessage1 = GameOverMessage1;
+            sGameOverMessage2 = GameOverMessage2;
+            sGameOverPanel = GameOverPanel;
+        }
 
         public void NewGame()
         {
@@ -18,29 +31,31 @@ namespace _GameOver
         {   // Cargamos la pantalla principal con el menu
             SceneManager.LoadScene(Config.Instance.menuScene);
         }
-
         public static void ShowGameOver(GameOverCondition goc)
         {
             switch (goc)
             {
                 case GameOverCondition.WIN:
-                    GameOver.ShowPlayerWon();
+                    ShowPlayerWon();
                     break;
                 case GameOverCondition.LOST:
-                    GameOver.ShowPlayerLost();
+                    ShowPlayerLost();
                     break;
                 default:
                     break;
             }
+            sGameOverPanel.PlayInAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
         }
 
         static void ShowPlayerWon()
         {
-            GameOverMessage1.text = Config.Instance.winMessage;
+            sGameOverMessage1.text = Config.Instance.winMessage1;
+            sGameOverMessage2.SetActive(true);
         }
         static void ShowPlayerLost()
         {
-
+            sGameOverMessage1.text = Config.Instance.lostMessage1;
         }
+
     }
 }
