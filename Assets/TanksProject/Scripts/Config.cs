@@ -19,9 +19,12 @@ public class Config : Singleton<Config>{
     #endregion // Escenas
 
     // ########################################
-    // Escenas
+    // Messages
     // ########################################
-    #region Variables
+    #region Messages
+
+    // Variables con los posibles mensajes del juego
+    public string winMessage = "YOU WON !";
 
     #endregion
 }

@@ -8,7 +8,7 @@ namespace _GameOver
 {
     public class GameOver : MonoBehaviour
     {
-        public Text GameOverMessage1;
+        public static Text GameOverMessage1;
 
         public void NewGame()
         {
