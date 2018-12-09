@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using _GameOver;
 
 public class LevelManager : MonoBehaviour {
 
@@ -41,6 +42,11 @@ public class LevelManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (player.GetComponent<PlayerTank>().hp <= 0)
+        {
+            GameOver.ShowGameOver(GameOverCondition.LOST);
+        }
       
         if (hasStarted) { 
 		    for (var i = 0; i < currentEntities.Count; i++)
