@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour {
     public GameObject BlueTank;
     public GameObject PinkTank;
     public GameObject player;
-    public GameObject portal;
+    //public GameObject portal;
     private List<GameObject> spawnpoints;
 
     public GameObject GameOverPanel;
@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour {
     public List<GameObject> spawnpoints_aux;
     public ParticleSystem ps_spawn;
     public bool hasStarted = false;
-    public Vector3 initial_player_pos = new Vector3(11, 2.5f, 17);
+    public Vector3 initial_player_pos;// = new Vector3(11, 2.5f, 17);
     public bool LevelPassed = false;
     private Level level;
     // Use this for initialization
@@ -40,7 +40,9 @@ public class LevelManager : MonoBehaviour {
         spawnpoints_aux = new List<GameObject>();
         currentEntities = new List<GameObject>();
         levelIndex = Random.Range(0, levels.Count);
-        //StartCoroutine("SpawnPlayer");
+        float xPos = levels[levelIndex].start.transform.position.x;
+        float zPos = levels[levelIndex].start.transform.position.z;
+        initial_player_pos = new Vector3(xPos-1.25f, 2.5f, zPos+1.25f);
         StartCoroutine("SpawnEnemiesAndPlayer");
 	}
 	
@@ -63,25 +65,30 @@ public class LevelManager : MonoBehaviour {
                     numberOfEntities--;
                 }      
             }
-            //print(currentEntities.Count);
+            
             if (numberOfEntities == 0)
             {
                 LoadNextLevel = true;
                 numberOfEntities = -1;
                 levels.RemoveAt(levelIndex);
-                if (levels.Count == 0 )
+                if (levels.Count == 0)
                 {
                     if(GameOverPanel.activeSelf == false)
                     {
                         GameOverPanel.SetActive(true);
                         GameOver.ShowGameOver(GameOverCondition.WIN);
+                        hasStarted = false;
+                        LoadNextLevel = false;
                     }
                 
                 }
                 else
                 {
-                    
+               
                     levelIndex = Random.Range(0, levels.Count);
+                    float xPos = levels[levelIndex].start.transform.position.x;
+                    float zPos = levels[levelIndex].start.transform.position.z;
+                    initial_player_pos = new Vector3(xPos - 1.25f, 2.5f, zPos + 1.25f);
                     StartCoroutine("Reset");
                     ParticleSystem player_ps = Instantiate(ps_spawn, player.transform.position, player.transform.rotation);
                     player_ps.gameObject.SetActive(true);
@@ -93,12 +100,11 @@ public class LevelManager : MonoBehaviour {
             }
         }
     }
-  
     IEnumerator Reset()
     {
         yield return new WaitForSeconds(BlockAnimation.minWaitTime);
         LoadNextLevel = false;
-        
+
     }
     IEnumerator SpawnEnemiesAndPlayer()
     {

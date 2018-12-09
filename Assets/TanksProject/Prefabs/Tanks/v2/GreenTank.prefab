@@ -587,7 +587,7 @@ MonoBehaviour:
   allowFire: 1
   lm:
     serializedVersion: 2
-    m_Bits: 34304
+    m_Bits: 38400
   minFireRate: 1.5
   maxFireRate: 3
   limitDistance: 14.57

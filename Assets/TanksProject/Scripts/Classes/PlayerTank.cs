@@ -27,7 +27,7 @@ namespace _PlayerTank
         private void Update()
         {
             CheckIfDead();
-            if (Input.GetKey("space") && allowFire)
+            if (Input.GetMouseButton(0) && allowFire)
                 StartCoroutine("Shoot");
 
         }

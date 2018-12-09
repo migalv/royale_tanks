@@ -41,8 +41,15 @@ public class PauseMenu : MonoBehaviour{
 
     #region MonoBehaviour
 
+    private void Start()
+    {
+        Time.timeScale = 1f;
+        isPaused = false;
+    }
+
     void Awake()
     {
+
         if (enabled)
         {
             // Set GUIAnimSystemFREE.Instance.m_AutoAnimation to false in Awake() will let you control all GUI Animator elements in the scene via scripts.
@@ -59,14 +66,15 @@ public class PauseMenu : MonoBehaviour{
     void HidePauseMenu()
     {
         // MoveIn the pause menu Panel
-        p_menuPanel.PlayOutAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren); ;
+        p_menuPanel.PlayOutAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
     }
 
     // Callback para el botón de salir del juego
     public void QuitGame()
     {   // Cargamos la pantalla principal con el menu
         SceneManager.LoadScene(Config.Instance.menuScene);
-        isPaused = false;
+        
+        
     }
 
     // Función que sirve para reanudar el juego escondiendo el menu de pausa
