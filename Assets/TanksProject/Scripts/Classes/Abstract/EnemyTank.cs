@@ -5,14 +5,14 @@ using _Tank;
 
 abstract public class EnemyTank : Tank
 {
+    // Reference to the player's position.
+    Transform player;
 
-    Transform player;               // Reference to the player's position.
-                                    /* PlayerHealth playerHealth;      // Reference to the player's health.
-                                     EnemyHealth enemyHealth;        // Reference to this enemy's health.*/
-    NavMeshAgent nav;               // Reference to the nav mesh agent.
+    // Reference to the nav mesh agent.
+    NavMeshAgent nav;   
+    
     //NavMeshHit hit;
-    public GameObject spawner;
-    public GameObject bullet;
+
     //public float speed = 15f;
     public bool allowFire = true;
     public RaycastHit hit;
@@ -59,16 +59,18 @@ abstract public class EnemyTank : Tank
 
     public void Update()
     {
-        CheckIfDead();
+        if (hp <= 0)
+            DestroyTank();
+        
         /* dirección a la que mandar el raycast */
-        var rayDirection = player.position - (spawner.transform.position);
+        var rayDirection = player.position - (Cannon.transform.position);
 
         /* Si encuentra al player en el raycast... */
-        if (Physics.Raycast((spawner.transform.position), rayDirection, out hit, Mathf.Infinity, lm) && hit.collider.name == "RedTank")
+        if (Physics.Raycast((Cannon.transform.position), rayDirection, out hit, Mathf.Infinity, lm) && hit.collider.name == "RedTank")
         {
             /* La AI puede ver al player */
             print("collider : " + hit.collider.name);
-            Debug.DrawRay(hit.point, (spawner.transform.position + visionOffset), Color.red);
+            Debug.DrawRay(hit.point, (Cannon.transform.position + visionOffset), Color.red);
 
             /*Si la AI puede disparar... */
             if (allowFire)

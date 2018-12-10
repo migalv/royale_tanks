@@ -6,21 +6,27 @@ namespace _PlayerTank
 {
     public class PlayerTank : Tank
     {
-        public Bullet bullet;
-        public GameObject spawner;
-        public float fireRate = 0.5f;
+        /*
+        // Constant that represents the base cadence of any turret
+        public static const short BASE_CADENCE = 1;
+        // Constant that represents the base clip size of any turret
+        public static const short BASE_CLIPSIZE = 5;
+        // Constant that represents the base ammunition capacity of any turret (infinty)
+        public static const float BASE_CAPACITY = 1 / 0.0f;
+        */
         public bool allowFire = true;
+
+        // Cadencia de la torreta (Viene determinada por cuantas balas se disparan por segundo)
+        public float fireRate = 0.5f;
+        // Capacidad del cargador: Define cuantas balas hay en un cargador
+        public short clipSize = 1;
+        // Capacidad total de la torreta: Define cuantos cargadores te quedan
+        public float capacity = 1;
+
+        public float rotationSpeed = 300.0f;
 
         Rigidbody rb;
         
-        public float rotationSpeed = 300.0f;
-        public float translation;
-        public float rotation;
-        public float BulletSpeed = 15f;
-        private void Reset()
-        {
-            hp = 3;
-        }
         private void Awake()
         {
 
@@ -30,13 +36,16 @@ namespace _PlayerTank
         }
         private void Update()
         {
-            CheckIfDead();
+            if(hp <= 0)
+                DestroyTank();
+
             if (Input.GetMouseButton(0) && allowFire)
                 StartCoroutine("Shoot");
-
         }
         private void FixedUpdate()
         {
+            float translation;
+            float rotation;
 
             translation = Input.GetAxis("Vertical") * speed;
             rotation = Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
@@ -55,7 +64,7 @@ namespace _PlayerTank
         }
         public override IEnumerator Shoot()
         {
-            Bullet newBullet = Instantiate(bullet, spawner.transform.position, spawner.transform.rotation);
+            Bullet newBullet = Instantiate(bullet, Cannon.transform.position, Cannon.transform.rotation);
 
             newBullet.GetComponent<Rigidbody>().velocity = newBullet.transform.forward * BulletSpeed;
             print(newBullet.GetComponent<Rigidbody>().velocity);

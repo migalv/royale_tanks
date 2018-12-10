@@ -8,11 +8,18 @@ namespace _Tank
     {
         public int hp = 1;
         public float speed;
+        public float BulletSpeed = 15f;
         public int armor;
         public List<Perk> inventory = new List<Perk>();
         public Turret turret;
         public int id;
         public ParticleSystem explosion;
+        public Bullet bullet;
+
+        // Objeto donde desde donde se generan las balas
+        public GameObject Cannon;
+
+
         // Constant that represents the base hp of any tank
         //public static const short BASE_HP = 100;
         // Constant that represents the base armor of any tank
@@ -45,19 +52,14 @@ namespace _Tank
         }*/
         // Update is called once per frame
 
-        public void CheckIfDead() { 
- 
-            if (hp <= 0)
-            {
-                
-                ParticleSystem ps = Instantiate(explosion, transform.position, transform.rotation);
+        public void DestroyTank() { 
+            ParticleSystem ps = Instantiate(explosion, transform.position, transform.rotation);
 
-                ps.gameObject.SetActive(true);
+            ps.gameObject.SetActive(true);
 
-                // Play the particle system of the tank exploding.
-                ps.Play();
-                gameObject.SetActive(false);
-            }
+            // Play the particle system of the tank exploding.
+            ps.Play();
+            gameObject.SetActive(false);
         }
         //public abstract void OnCollisionEnter(Collision collision);
 

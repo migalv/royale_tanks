@@ -14,8 +14,8 @@ namespace _Bullet
         */
         // Daño: Determina la cantidad de puntos de vida (hp) que se le quita al objeto impactado con la bala
         public short damage = 1;
-        // Rango: Rango máximo al que puede llegar la bala (repesentado en unidades de Unity). Una vez alcanzado se autodestruye.
-        public int range = 1;
+        // BulletLife: Tiempo de vida de la bala, determina cuanto tiempo dura la bala una vez disparada. (Determina hasta donde llega)
+        public float bulletLife = 1f;
 
         // Torreta: Especifica la torreta en concreto que esta utilizando esta bala
         public Turret turret;
