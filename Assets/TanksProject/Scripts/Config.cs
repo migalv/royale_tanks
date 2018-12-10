@@ -31,6 +31,18 @@ namespace _Config
         public string lostMessage1 = "YOU LOST";
 
         #endregion
+
+        // ########################################
+        // blockVars
+        // ########################################
+        #region blockVars
+
+        // Los bloques miden 2.5f, pero nos interesa coger la mitad de ese valor para spawnear cosas en el centro del bloque
+        public float blockSize = 2.5f/2;
+
+
+        #endregion
+
     }
 }
 

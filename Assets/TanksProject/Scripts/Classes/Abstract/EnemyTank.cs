@@ -119,8 +119,10 @@ abstract public class EnemyTank : Tank
     }
     public override void TakeDamage(int dmg)
     {
-        hp -= dmg;
-        
+        if (hp - dmg < 0)
+            hp = 0;
+        else hp -= dmg;
+
         //throw new System.NotImplementedException();
     }
 

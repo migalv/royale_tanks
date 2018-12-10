@@ -590,7 +590,7 @@ MonoBehaviour:
     m_Bits: 38400
   minFireRate: 1.5
   maxFireRate: 3
-  limitDistance: 14.57
+  limitDistance: 8
   BulletSpeed: 7
 --- !u!114 &114712067450484212
 MonoBehaviour:

@@ -7,28 +7,54 @@ using _Config;
 
 public class LevelManager : MonoBehaviour {
 
+    /*Lista de niveles */
     public List<Level> levels;
+    /*Indice del nivel actual */
     public int levelIndex;
 
+    /* Variable para controlar el paso de un nivel a otro*/
     public static bool LoadNextLevel = false;
+    
+    /*Numero de entidades enemigas vivas en un nivel en un momento dado*/
     public static int numberOfEntities = -1;
+    
+    /*Tipos de enemigos que pueden spawnear*/
     public GameObject GreenTank;
     public GameObject BlueTank;
     public GameObject PinkTank;
+    
+    /*Objeto que hace referencia al jugador*/
     public GameObject player;
     //public GameObject portal;
+    
+        /*Lista de spawns de un nivel*/
     private List<GameObject> spawnpoints;
 
+    /*Panel de GameOver (UI)*/
     public GameObject GameOverPanel;
 
+    /*Lista con los tipos de enemigo que pueden spawnear*/
     private List<GameObject> tankTypes;
+
+    /*Lista con las entidades actuales de un nivel*/
     public List<GameObject> currentEntities;
+
+    /*Lista auxiliar para el manejo de spawns*/
     public List<GameObject> spawnpoints_aux;
+
+    /*Sistema de particulas para el efecto de spawn*/
     public ParticleSystem ps_spawn;
+
+    /*Flag para saber si un nivel ha cargado entero*/
     public bool hasStarted = false;
+
+    /*Posicion inicial del jugador*/
     public Vector3 initial_player_pos;// = new Vector3(11, 2.5f, 17);
-    public bool LevelPassed = false;
+
+    /*Nivel actual*/
     private Level level;
+    public bool LevelPassed = false;
+    
     // Use this for initialization
     void Start () {
         tankTypes = new List<GameObject>
@@ -42,7 +68,7 @@ public class LevelManager : MonoBehaviour {
         levelIndex = Random.Range(0, levels.Count);
         float xPos = levels[levelIndex].start.transform.position.x;
         float zPos = levels[levelIndex].start.transform.position.z;
-        initial_player_pos = new Vector3(xPos-1.25f, 2.5f, zPos+1.25f);
+        initial_player_pos = new Vector3(xPos - Config.Instance.blockSize, 2.5f, zPos + Config.Instance.blockSize);
         StartCoroutine("SpawnEnemiesAndPlayer");
 	}
 	
@@ -88,7 +114,7 @@ public class LevelManager : MonoBehaviour {
                     levelIndex = Random.Range(0, levels.Count);
                     float xPos = levels[levelIndex].start.transform.position.x;
                     float zPos = levels[levelIndex].start.transform.position.z;
-                    initial_player_pos = new Vector3(xPos - 1.25f, 2.5f, zPos + 1.25f);
+                    initial_player_pos = new Vector3(xPos - Config.Instance.blockSize, 2.5f, zPos + Config.Instance.blockSize);
                     StartCoroutine("Reset");
                     ParticleSystem player_ps = Instantiate(ps_spawn, player.transform.position, player.transform.rotation);
                     player_ps.gameObject.SetActive(true);

@@ -17,9 +17,13 @@ namespace _PlayerTank
         public float translation;
         public float rotation;
         public float BulletSpeed = 15f;
-        private void Start()
+        private void Reset()
         {
             hp = 3;
+        }
+        private void Awake()
+        {
+
             speed = 3f;
             rb = gameObject.GetComponent<Rigidbody>();
             //speed = new Vector3(0, 0, 0.1f);

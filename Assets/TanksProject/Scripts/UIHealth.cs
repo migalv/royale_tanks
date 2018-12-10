@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using _Tank;
+using _PlayerTank;
 public class UIHealth : MonoBehaviour {
 
     public Image[] hearts;
@@ -19,7 +19,7 @@ public class UIHealth : MonoBehaviour {
         {
             hearts[i].
         }*/
-        health = player.GetComponent<Tank>().hp;
+        health = player.GetComponent<PlayerTank>().hp;
     }
 	
 	// Update is called once per frame
@@ -30,7 +30,8 @@ public class UIHealth : MonoBehaviour {
         }*/
 
 
-        health = player.GetComponent<Tank>().hp;
+        health = player.GetComponent<PlayerTank>().hp;
+    
         //print(hearts.Length);
 
         /* empieza en 1 porque por algun motivo el 
