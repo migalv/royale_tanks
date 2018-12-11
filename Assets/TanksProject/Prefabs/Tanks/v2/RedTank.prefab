@@ -165,12 +165,12 @@ GameObject:
   - component: {fileID: 65706334240782562}
   - component: {fileID: 114275989348046232}
   m_Layer: 9
-  m_Name: RedTank 1
+  m_Name: RedTank
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4008555611582674
 Transform:
   m_ObjectHideFlags: 1
@@ -653,15 +653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7adb7bff886070547b25d76b559e5762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouse_pos: {x: 0, y: 0, z: 0}
-  object_pos: {x: 0, y: 0, z: 0}
-  angle: 0
-  contiguo: 0
-  opuesto: 0
-  speed: 15
-  rb: {fileID: 0}
-  cam: {fileID: 0}
-  TurretAngle: 0
 --- !u!114 &114764924109613612
 MonoBehaviour:
   m_ObjectHideFlags: 1

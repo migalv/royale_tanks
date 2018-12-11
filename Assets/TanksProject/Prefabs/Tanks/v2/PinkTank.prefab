@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 114334319017691366}
   - component: {fileID: 114816560713190942}
   m_Layer: 12
-  m_Name: PinkTank (1)
+  m_Name: PinkTank
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

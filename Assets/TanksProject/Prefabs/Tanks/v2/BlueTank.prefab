@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 114489020581148680}
   - component: {fileID: 114687010886304108}
   m_Layer: 12
-  m_Name: BlueTank 1
+  m_Name: BlueTank
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
