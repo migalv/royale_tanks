@@ -4,35 +4,50 @@ using System.Collections;
 
 public class BlockAnimation : MonoBehaviour
 {
+    //Variables para controlar el tiempo que espera un bloque hasta caer
     public static float minWaitTime = 1f;
     public static float maxWaitTime = 3f;
 
+    //Flag para saber si un bloque esta colocado
     public bool blockIsPlaced = true;
+
+    //Velocidad a la que caen los bloques
     private float speed = 20;
+
+    //Flag para saber si el bloque empieza a caer
     public bool hasStarted = false;
+
+    //Vector que representa la posicion destino del bloque
     private  Vector3 destination;
-    //public GameObject levelManager;
+
+    //Vector que representa la distancia a la posicion objetivo
     Vector3 distance;
+
+
     void Start()
     {
+        //Seteamos la distancia a 50 unidades en el eje y por debajo de la posicion actuar, 
+        // para que los bloques tengan eefecto de caida
         distance = new Vector3(0, 50, 0);
         destination = gameObject.transform.position - distance;
-        // Set the destination to be the object's position so it will not start off moving
+
         //SetDestination(destination);
     }
 
     void Update()
     {
-        if (transform.position.y <= -40)
+        //Condicion para limpiar los niveles que no sean necesarios
+        if (transform.position.y <= distance.y)
             Destroy(gameObject);
+
+        //
         if (LevelManager.LoadNextLevel && blockIsPlaced)
         {
             destination = gameObject.transform.position - distance;
-            //Debug.Log("dest" + destination);
+
             blockIsPlaced = false;
             hasStarted = false;
-            //Debug.Log("dest2" + destination);
-            //Debug.Log("pos" + gameObject.transform.position);
+
             //StartCoroutine("LoadNextLevel");
         }
 

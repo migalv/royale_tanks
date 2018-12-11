@@ -18,7 +18,7 @@ namespace _Bullet
         public float bulletLife = 1f;
 
         // Torreta: Especifica la torreta en concreto que esta utilizando esta bala
-        public Turret turret;
+        //public Turret turret;
 
         // Particula: Especifica las particulas de la bala
         // private Particle particle;
@@ -33,17 +33,12 @@ namespace _Bullet
             //this.sprite = sprite;
         }
         */
-        /*
-        public setTurret(Turret turret)
-        {
-            this.turret = turret;
-        }
-        */
+
         public override String ToString()
         {
             return GetType().Name + ": {\n" +
                         "  damage --> " + damage + "\n" +
-                        "  range --> " + range + "\n" +
+                        //"  range --> " + range + "\n" +
                         //"  particle --> " + this.particle.toString() + "\n" +
                         //"  sprite (path) --> " + this.sprite.path + "\n" +
                     "}\n";

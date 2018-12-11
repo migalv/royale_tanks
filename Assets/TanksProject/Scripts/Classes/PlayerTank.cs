@@ -14,6 +14,8 @@ namespace _PlayerTank
         // Constant that represents the base ammunition capacity of any turret (infinty)
         public static const float BASE_CAPACITY = 1 / 0.0f;
         */
+
+        //Flag para saber si se puede disparar
         public bool allowFire = true;
 
         // Cadencia de la torreta (Viene determinada por cuantas balas se disparan por segundo)
@@ -25,17 +27,19 @@ namespace _PlayerTank
 
         public float rotationSpeed = 300.0f;
 
+        //Rigidbody para el movimiento del tanque
         Rigidbody rb;
         
         private void Awake()
         {
-
+            //Asignamos una velocidad a nuestro tanque y cogemos su rigidbody
             speed = 3f;
             rb = gameObject.GetComponent<Rigidbody>();
             //speed = new Vector3(0, 0, 0.1f);
         }
         private void Update()
         {
+            //Se comprueba que el tanque siga vivo y si se quiere disparar
             if(hp <= 0)
                 DestroyTank();
 
@@ -44,6 +48,7 @@ namespace _PlayerTank
         }
         private void FixedUpdate()
         {
+            //Se comprueba el input de los botones de movimiento para ver si hay que mover el tanque
             float translation;
             float rotation;
 
@@ -55,7 +60,6 @@ namespace _PlayerTank
             rb.MovePosition(transform.position + newPos);
 
             // Rotate around our y-axis
-
             Quaternion turnRotation = Quaternion.Euler(0f, rotation, 0f);
 
             // Apply this rotation to the rigidbody's rotation.
@@ -64,18 +68,17 @@ namespace _PlayerTank
         }
         public override IEnumerator Shoot()
         {
+            //Instanciamos una nueva bala, y le damos una velocidad, esperamos 
+            //un tiempo y después levantamos la flag para volver a disparar si es necesario
             Bullet newBullet = Instantiate(bullet, Cannon.transform.position, Cannon.transform.rotation);
 
             newBullet.GetComponent<Rigidbody>().velocity = newBullet.transform.forward * BulletSpeed;
-            print(newBullet.GetComponent<Rigidbody>().velocity);
+
             Destroy(newBullet, 2.0f);
             allowFire = false;
             yield return new WaitForSeconds(fireRate);
             allowFire = true;
         }
-        public override void TakeDamage(int dmg)
-        {
-            hp -= dmg;
-        }
+
     }
 }

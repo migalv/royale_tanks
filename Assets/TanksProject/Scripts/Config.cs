@@ -14,9 +14,9 @@ namespace _Config
         #region Escenas
 
         // Variable que hace referencia al nombre de la escena donde se cargan el juego
-        public string levelScene = "TestLevel";
+        public string levelScene = "InGameScene";
         // Variable que hace referencia al nombre de la escena donde se muestra el menu del juego
-        public string menuScene = "tanks_menu";
+        public string menuScene = "TanksMenu";
 
         #endregion // Escenas
 

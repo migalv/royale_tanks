@@ -11,7 +11,7 @@ public class FriendlyBullet : Bullet
 
             if (!(collision.collider.tag == "Player" || collision.collider.name == "Floor"))
             {
-                print(collision.collider.name);
+
                 if (collision.collider.tag == "Enemy")
                     collision.collider.GetComponent<Tank>().TakeDamage(damage);
                 Destroy(gameObject);

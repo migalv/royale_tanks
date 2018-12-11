@@ -5,39 +5,41 @@ using _Tank;
 
 abstract public class EnemyTank : Tank
 {
-    // Reference to the player's position.
+    // Transform del player, para saber su posición
     Transform player;
 
     // Reference to the nav mesh agent.
     NavMeshAgent nav;   
-    
-    //NavMeshHit hit;
 
-    //public float speed = 15f;
+    //Flag para saber si el tanque puede disparar o no
     public bool allowFire = true;
+
+    //Variable en la que se guarda la información del raycast cuando colisiona
     public RaycastHit hit;
+
+    //Layermask para permitir al raycast ignorar algunos objetos según su capa
     public LayerMask lm;
+
+    //Variables para controlar la cadencia de los tanques
     public float minFireRate = 0.5f;
     public float maxFireRate = 2f;
+
+    //Variable para controlar la distancia a la que el tanque se para si se acerca demasiado a su objetivo
     public float limitDistance = 10f;
 
+    //Variable para que el raycast tenga su origen centrado respecto del cañon
     private Vector3 visionOffset = new Vector3(0.03269768f, 0.487f, 0.9388409f);
-    /* Variables para los tipos de enemigos */
-    //int nbullets;
-    //float randomBulletRotation;
-    //public bool multipleShot = false;
 
     void Awake()
     {
-
+        // Buscamos el objeto player y nos quedamos con la referencia de su transform
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        /* playerHealth = player.GetComponent<PlayerHealth>();
-         enemyHealth = GetComponent<EnemyHealth>();*/
+
+        //Activamos el nav para que empiece a buscar al player
         nav = GetComponent<NavMeshAgent>();
         nav.enabled = true;
         nav.SetDestination(player.position);
     }
-
 
     /* para debuguear lo que la AI esta viendo */
     private void OnDrawGizmos()
@@ -47,18 +49,9 @@ abstract public class EnemyTank : Tank
         Gizmos.DrawSphere(hit.point, 1);
     }
 
-    /*
-    public override void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.tag == "bullet")
-        {
-            // Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }
-    }*/
-
     public void Update()
     {
+        //Para saber si el tanque se tiene que destruir
         if (hp <= 0)
             DestroyTank();
         
@@ -69,7 +62,6 @@ abstract public class EnemyTank : Tank
         if (Physics.Raycast((Cannon.transform.position), rayDirection, out hit, Mathf.Infinity, lm) && hit.collider.name == "RedTank")
         {
             /* La AI puede ver al player */
-            print("collider : " + hit.collider.name);
             Debug.DrawRay(hit.point, (Cannon.transform.position + visionOffset), Color.red);
 
             /*Si la AI puede disparar... */
@@ -78,8 +70,8 @@ abstract public class EnemyTank : Tank
                 StartCoroutine("Shoot");
 
             /* Distancia entre el player y la AI */
-
             var distance = Vector3.Distance(player.position, transform.position);
+
             /*Si la distancia es mayor a la límite...*/
             if (distance >= limitDistance && gameObject.activeSelf)
             {
@@ -87,7 +79,6 @@ abstract public class EnemyTank : Tank
                 nav.enabled = true;
                 nav.SetDestination(player.position);
             }
-
             else
             {
                 /*La AI se para */
@@ -100,32 +91,5 @@ abstract public class EnemyTank : Tank
             nav.enabled = true;
             nav.SetDestination(player.position);
         }
-        /*
-        if (!nav.Raycast(player.position, out hit) && allowFire)
-        {
-            StartCoroutine("AIShoot");
-           
-
-
-            // Target is "visible" from our position.
-        }*/
-
-
-        //}
-        // Otherwise...
-        /*else
-        {
-            // ... disable the nav mesh agent.
-            nav.enabled = false;
-        }*/
     }
-    public override void TakeDamage(int dmg)
-    {
-        if (hp - dmg < 0)
-            hp = 0;
-        else hp -= dmg;
-
-        //throw new System.NotImplementedException();
-    }
-
 }

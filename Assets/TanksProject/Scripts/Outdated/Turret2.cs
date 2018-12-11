@@ -19,7 +19,7 @@ public class Turret2 : MonoBehaviour
     public GameObject spawner;
     public float fireRate = 0.5f;
     int floorMask;
-    float camRayLength = 100f;
+    //float camRayLength = 100f;
     public bool allowFire = true;
     // Use this for initialization
     void Awake()

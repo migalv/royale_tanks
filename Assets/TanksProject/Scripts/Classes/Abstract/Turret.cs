@@ -17,10 +17,10 @@ namespace _Turret
         public override String ToString()
         {
             return this.GetType().Name + ": {\n" +
-                        "  cadence --> " + cadence + "\n" +
-                        "  clip size --> " + clipSize + "\n" +
-                        "  capacity --> " + capacity + "\n" +
-                        "  bullet type --> " + bullet.ToString() + "\n" +
+                        //"  cadence --> " + cadence + "\n" +
+                        //"  clip size --> " + clipSize + "\n" +
+                        //"  capacity --> " + capacity + "\n" +
+                        //"  bullet type --> " + bullet.ToString() + "\n" +
                     "}\n";
         }
     }
