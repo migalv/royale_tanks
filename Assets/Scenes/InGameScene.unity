@@ -1205,7 +1205,6 @@ GameObject:
   - component: {fileID: 305721735}
   - component: {fileID: 305721734}
   - component: {fileID: 305721733}
-  - component: {fileID: 305721732}
   m_Layer: 12
   m_Name: TankTurret
   m_TagString: Enemy
@@ -1228,17 +1227,6 @@ Transform:
   m_Father: {fileID: 271029694}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &305721732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 305721730}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3052f72b5184e8c4a814cc52e380439f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &305721733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8971,7 +8959,8 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114279455762585402, guid: be65b74d4ef1bd540af905f622df62f9, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: be65b74d4ef1bd540af905f622df62f9, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1028123472
@@ -10575,7 +10564,8 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114438365420657294, guid: ff6675c44cb465c439e76ae610177647, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: ff6675c44cb465c439e76ae610177647, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1501509762
@@ -11474,7 +11464,8 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114377962765477602, guid: 78e1412bb88c6474898a52e869686f73, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 78e1412bb88c6474898a52e869686f73, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1738473281
@@ -17261,7 +17252,6 @@ GameObject:
   - component: {fileID: 1974887839}
   - component: {fileID: 1974887838}
   - component: {fileID: 1974887837}
-  - component: {fileID: 1974887836}
   m_Layer: 12
   m_Name: TankTurret
   m_TagString: Enemy
@@ -17284,17 +17274,6 @@ Transform:
   m_Father: {fileID: 519976654}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1974887836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1974887834}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3052f72b5184e8c4a814cc52e380439f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1974887837
 MonoBehaviour:
   m_ObjectHideFlags: 0

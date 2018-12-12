@@ -37,7 +37,7 @@ public class BlockAnimation : MonoBehaviour
     void Update()
     {
         //Condicion para limpiar los niveles que no sean necesarios
-        if (transform.position.y <= distance.y)
+        if (transform.position.y <= -50f)
             Destroy(gameObject);
 
         //
