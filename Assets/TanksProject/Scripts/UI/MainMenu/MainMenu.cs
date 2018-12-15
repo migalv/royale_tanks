@@ -6,7 +6,20 @@ using _Config;
 
 public class MainMenu : MonoBehaviour {
 
-	public void QuitGame()
+    public AudioManager audioManager;
+
+    private void Start()
+    {
+        if (audioManager == null)
+        {
+            Debug.LogWarning("Audio Manager not found");
+            return;
+        }
+        // Activamos la música de fondo del menu principal
+        audioManager.Play(Config.Instance.mainMenuSource);
+    }
+
+    public void QuitGame()
     {
         Application.Quit();
     }

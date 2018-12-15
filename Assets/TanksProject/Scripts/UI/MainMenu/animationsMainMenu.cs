@@ -21,6 +21,11 @@ public class animationsMainMenu : MonoBehaviour {
     public GUIAnimFREE m_controlsBtn;
     public GUIAnimFREE m_backBtn;
 
+    // GUIAnimFREE objects for the Audio Settings Menu
+    public GUIAnimFREE a_audioHeader;
+    public GUIAnimFREE a_audioSettingsBg;
+    public GUIAnimFREE a_backBtn;
+
     #endregion // Variables
 
     // ########################################
@@ -54,6 +59,7 @@ public class animationsMainMenu : MonoBehaviour {
 
     public void showMainMenu()
     {
+        StartCoroutine(DisableAllButtonsForSeconds(1.6f));
         // MoveIn the 3 buttons on the right
         m_playBtn.PlayInAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
         m_optionsBtn.PlayInAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
@@ -62,6 +68,7 @@ public class animationsMainMenu : MonoBehaviour {
 
     public void hideMainMenu()
     {
+        StartCoroutine(DisableAllButtonsForSeconds(1.6f));
         // MoveOut the 3 buttons on the right
         m_playBtn.PlayOutAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
         m_optionsBtn.PlayOutAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
@@ -70,6 +77,7 @@ public class animationsMainMenu : MonoBehaviour {
 
     public void showOptionsMenu()
     {
+        StartCoroutine(DisableAllButtonsForSeconds(1.6f));
         // MoveIn the 5 components of the options menu
         m_optionsHeader.PlayInAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
         m_audioBtn.PlayInAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
@@ -80,12 +88,29 @@ public class animationsMainMenu : MonoBehaviour {
 
     public void hideOptionsMenu()
     {
+        StartCoroutine(DisableAllButtonsForSeconds(1.6f));
         // MoveIn the 5 components of the options menu
         m_optionsHeader.PlayOutAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
         m_audioBtn.PlayOutAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
         m_videoBtn.PlayOutAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
         m_controlsBtn.PlayOutAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
         m_backBtn.PlayOutAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
+    }
+    public void showAudioSettings()
+    {
+        StartCoroutine(DisableAllButtonsForSeconds(1f));
+        // MoveIn the 3 components of the audio menu
+        a_audioHeader.PlayInAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
+        a_audioSettingsBg.PlayInAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
+        a_backBtn.PlayInAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
+    }
+    public void hideAudioSettings()
+    {
+        StartCoroutine(DisableAllButtonsForSeconds(1f));
+        // MoveIn the 5 components of the audio menu
+        a_audioHeader.PlayOutAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
+        a_audioSettingsBg.PlayOutAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
+        a_backBtn.PlayOutAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
     }
 
     // Disable a button 
@@ -98,5 +123,17 @@ public class animationsMainMenu : MonoBehaviour {
     public void enableButton(GameObject GO)
     {
         GUIAnimSystemFREE.Instance.EnableButton(GO.transform, true);
+    }
+
+    // Disable all buttons for a few seconds
+    IEnumerator DisableAllButtonsForSeconds(float DisableTime)
+    {
+        // Disable all buttons
+        GUIAnimSystemFREE.Instance.EnableAllButtons(false);
+
+        yield return new WaitForSeconds(DisableTime);
+
+        // Enable all buttons
+        GUIAnimSystemFREE.Instance.EnableAllButtons(true);
     }
 }

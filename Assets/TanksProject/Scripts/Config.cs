@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,6 +43,18 @@ namespace _Config
 
         #endregion
 
+        // ########################################
+        // Audio Names
+        // ########################################
+        #region AudioNames
+
+        // Nombre del clip del sonido de fondo del Menu principal
+        public string mainMenuSource = "MainMenu";
+
+        // Nombre del Audio Group principal
+        public string masterVolume = "MasterVolume";
+
+        #endregion
     }
 }
 

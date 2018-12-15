@@ -41,7 +41,7 @@ public class PauseMenu : MonoBehaviour{
 
     #region MonoBehaviour
 
-    private void Start()
+    private void OnEnable()
     {
         Time.timeScale = 1f;
         isPaused = false;
