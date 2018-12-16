@@ -26,13 +26,14 @@ namespace _PlayerTank
         public float capacity = 1;
 
         public float rotationSpeed = 300.0f;
-
+        public GameObject muzzleVFXPrefab;
         //Rigidbody para el movimiento del tanque
         Rigidbody rb;
         
         private void Awake()
         {
             //Asignamos una velocidad a nuestro tanque y cogemos su rigidbody
+            hp = 30000;
             speed = 3f;
             rb = gameObject.GetComponent<Rigidbody>();
             //speed = new Vector3(0, 0, 0.1f);
@@ -70,6 +71,13 @@ namespace _PlayerTank
         {
             //Instanciamos una nueva bala, y le damos una velocidad, esperamos 
             //un tiempo y después levantamos la flag para volver a disparar si es necesario
+
+            if (muzzleVFXPrefab != null)
+            {
+                var muzzleVFX = Instantiate(muzzleVFXPrefab, Cannon.transform.position, Cannon.transform.rotation);
+                Destroy(muzzleVFX, 2f);
+            }
+
             Bullet newBullet = Instantiate(bullet, Cannon.transform.position, Cannon.transform.rotation);
 
             newBullet.GetComponent<Rigidbody>().velocity = newBullet.transform.forward * BulletSpeed;
