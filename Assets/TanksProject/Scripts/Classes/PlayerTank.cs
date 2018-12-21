@@ -33,7 +33,7 @@ namespace _PlayerTank
         private void Awake()
         {
             //Asignamos una velocidad a nuestro tanque y cogemos su rigidbody
-            hp = 30000;
+            hp = 3;
             speed = 3f;
             rb = gameObject.GetComponent<Rigidbody>();
             //speed = new Vector3(0, 0, 0.1f);

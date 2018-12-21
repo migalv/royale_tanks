@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using _Config;
 
-public class PauseMenu : MonoBehaviour{
+public class PauseMenu : MonoBehaviour
+{
 
     // ########################################
     // Variables
@@ -41,12 +42,6 @@ public class PauseMenu : MonoBehaviour{
 
     #region MonoBehaviour
 
-    private void OnEnable()
-    {
-        Time.timeScale = 1f;
-        isPaused = false;
-    }
-
     void Awake()
     {
 
@@ -57,13 +52,16 @@ public class PauseMenu : MonoBehaviour{
         }
     }
 
-    void ShowPauseMenu()
+    public void ShowPauseMenu()
     {
         // MoveIn the pause menu Panel
+        pauseMenuBackground.SetActive(true);
+        pauseBtn.SetActive(false);
+        p_menuPanel.gameObject.SetActive(true);
         p_menuPanel.PlayInAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
     }
 
-    void HidePauseMenu()
+    public void HidePauseMenu()
     {
         // MoveIn the pause menu Panel
         p_menuPanel.PlayOutAnims(GUIAnimSystemFREE.eGUIMove.SelfAndChildren);
@@ -73,28 +71,22 @@ public class PauseMenu : MonoBehaviour{
     public void QuitGame()
     {   // Cargamos la pantalla principal con el menu
         SceneManager.LoadScene(Config.Instance.menuScene);
-        
-        
+        Time.timeScale = 1f;
     }
 
     // Función que sirve para reanudar el juego escondiendo el menu de pausa
     public void ResumeGame()
     {
-        // Hide the pause menu background
-        pauseMenuBackground.SetActive(false);
-        pauseBtn.SetActive(true);
-        HidePauseMenu();
         Time.timeScale = 1f;
         isPaused = false;
+        pauseMenuBackground.SetActive(false);
+        pauseBtn.SetActive(true);
+        p_menuPanel.gameObject.SetActive(false);
     }
 
     // Función que sirve para pausar el juego mostrando el menu de pausa
     public void PauseGame()
     {
-        // Show the pause menu background
-        pauseMenuBackground.SetActive(true);
-        pauseBtn.SetActive(false);
-        ShowPauseMenu();
         Time.timeScale = 0f;
         isPaused = true;
     }

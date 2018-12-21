@@ -13,24 +13,28 @@ public class AudioManager : MonoBehaviour
     // Valor del volumen antes de mutearlo
     private float previousMasterVolume;
     private bool masterIsMuted;
-    public Toggle masterVolumeToggle;
+
+    public static AudioManager instance;
 
     // Mutea el volumen del grupo especificado como parametro
-    public void MuteUnMuteMasterVolume(Toggle toggle)
+    public void MuteUnMuteMasterVolume(Slider masterSlider)
     {
-        if (!masterVolumeToggle.isOn && masterIsMuted == false)
+        if (masterIsMuted == false)
         {
             audioMixer.GetFloat(Config.Instance.masterVolume, out previousMasterVolume);
             // Se setea el valor del volumen a -80 porque es cuando el juego está muteado
             audioMixer.SetFloat(Config.Instance.masterVolume, -80f);
+            // Desactivamos el slider del volumen de master
             masterIsMuted = true;
         }
-        else if (masterVolumeToggle.isOn && masterIsMuted == true)
+        else if (masterIsMuted == true)
         {
             audioMixer.SetFloat(Config.Instance.masterVolume, previousMasterVolume);
+
+            // Desactivamos el slider del volumen de master
             masterIsMuted = false;
         }
-        
+
     }
 
     public void SetMasterVolume(float volume)
@@ -40,7 +44,14 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();

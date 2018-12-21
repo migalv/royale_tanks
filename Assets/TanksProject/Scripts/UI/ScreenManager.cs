@@ -104,7 +104,7 @@ public class ScreenManager : MonoBehaviour
     {
         bool closedStateReached = false;
         bool wantToClose = true;
-        
+
         while (!closedStateReached && wantToClose)
         {
 
@@ -112,12 +112,13 @@ public class ScreenManager : MonoBehaviour
                 closedStateReached = anim.GetCurrentAnimatorStateInfo(0).IsName(k_ClosedStateName);
 
             wantToClose = !anim.GetBool(m_OpenParameterId);
-            //yield return new WaitForSeconds(2);
             yield return new WaitForEndOfFrame();
         }
 
         if (wantToClose)
+        {
             anim.gameObject.SetActive(false);
+        }
     }
 
     //Make the provided GameObject selected
