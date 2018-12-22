@@ -48,7 +48,12 @@ abstract public class EnemyTank : Tank
         Gizmos.DrawSphere(transform.position, 1);
         Gizmos.DrawSphere(hit.point, 1);
     }
-
+    public override void TakeDamage(int dmg)
+    {
+        if (hp - dmg < 0)
+            hp = 0;
+        else hp -= dmg;
+    }
     public void Update()
     {
         //Para saber si el tanque se tiene que destruir

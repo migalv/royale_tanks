@@ -15,27 +15,47 @@ namespace _PlayerTank
         public static const float BASE_CAPACITY = 1 / 0.0f;
         */
 
+        //Renderer del player, para el efecto de recibir daño
+        public Renderer rend;
+
+        //Tiempo de parpadeo del player cuando recibe daño
+        public float rendTime = 0.05f;
+        
         //Flag para saber si se puede disparar
         public bool allowFire = true;
 
+        //Flag para saber si el player puede recibir daño o no
+        public bool invulnerability = false;
+
+        // Tiempo que pasa hasta que el jugador puede volver a sufrir daño después de un impacto
+        public float recoverTimeAfterHit = 1.6f;
+
         // Cadencia de la torreta (Viene determinada por cuantas balas se disparan por segundo)
         public float fireRate = 0.5f;
+        
         // Capacidad del cargador: Define cuantas balas hay en un cargador
         public short clipSize = 1;
+        
         // Capacidad total de la torreta: Define cuantos cargadores te quedan
         public float capacity = 1;
 
         public float rotationSpeed = 300.0f;
+
         public GameObject muzzleVFXPrefab;
+        
         //Rigidbody para el movimiento del tanque
         Rigidbody rb;
-        
+
+        public GameObject lm; 
+
         private void Awake()
         {
             //Asignamos una velocidad a nuestro tanque y cogemos su rigidbody
             hp = 3;
+            rend = GetComponent<Renderer>();
             speed = 3f;
             rb = gameObject.GetComponent<Rigidbody>();
+            //GameObject lm = GameObject.Find("LevelManager");
             //speed = new Vector3(0, 0, 0.1f);
         }
         private void Update()
@@ -88,5 +108,37 @@ namespace _PlayerTank
             allowFire = true;
         }
 
+        public override void TakeDamage(int dmg)
+        {
+            if (!invulnerability)
+            {
+                if (hp - dmg < 0)
+                    hp = 0;
+                else
+                {
+                    hp -= dmg;
+                    StartCoroutine("RecoverAfterHit");
+                }
+            }
+        }
+
+        public IEnumerator RecoverAfterHit()
+        {
+
+            invulnerability = true;
+            lm.GetComponent<CameraShake>().ShakeIt();
+            GameObject renderers = gameObject.transform.GetChild(0).gameObject;
+            for (int i = 0; i <  8; i++)
+            {
+                
+                if (renderers.activeSelf)
+                    renderers.SetActive(false);
+                else renderers.SetActive(true);
+                yield return new WaitForSeconds(0.1f);
+
+            }
+            //yield return new WaitForSeconds(recoverTimeAfterHit);
+            invulnerability = false;
+        }
     }
 }

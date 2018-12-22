@@ -47,12 +47,8 @@ namespace _Tank
         }
 
         public abstract IEnumerator Shoot();
-        public void TakeDamage(int dmg)
-        {
-            if (hp - dmg < 0)
-                hp = 0;
-            else hp -= dmg;
-        }
+        public abstract void TakeDamage(int dmg);
+
         public override string ToString()
         {
             return this.GetType().Name + ": " + this.id + " {\n" +
