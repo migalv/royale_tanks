@@ -1838,7 +1838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1929877390390958, guid: cfab9e56489b9084289a3dcc1adf2109, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4142181691716606, guid: cfab9e56489b9084289a3dcc1adf2109, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5532,8 +5532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - {fileID: 114398272019051328, guid: a47ce3f87c655f84a92c740e30f8896b, type: 3}
-  - {fileID: 114134555229910792, guid: fc0b9cd755f51ca4c95816efe4a19c69, type: 3}
+  - {fileID: 114057243820264380, guid: 6477db730f477e74883c44c7532f28ea, type: 3}
   levelIndex: 0
   GreenTank: {fileID: 1266173570748754, guid: 6d9a4c8a8169a0a4abbaf2e0adb6a5fd, type: 3}
   BlueTank: {fileID: 1951314880392744, guid: 73b7570708680cb44a6588081d1bc424, type: 3}
